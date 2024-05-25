@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sesión</title>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp2754931.jpg'); /* Imagen de fondo */
+            background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir toda la página */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center center; /* Centra la imagen de fondo */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo negro translúcido */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-container h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button.invalid {
+            background-color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Por favor rellene sus datos para la creación de su usuario</h2>
+        <form id="registrationForm">
+            <label for="userInput">Introduce tu usuario:</label>
+            <input type="text" id="userInput" name="userInput" oninput="validateForm()">
+
+            <label for="passwordInput">Introduce tu contraseña:</label>
+            <input type="password" id="passwordInput" name="passwordInput" oninput="validateForm()">
+
+            <label for="repassword">Introduce nuevamente tu contraseña:</label>
+            <input type="password" id="repassword" name="repassword" oninput="validateForm()">
+
+            <label for="email">Introduce tu correo electrónico:</label>
+            <input type="text" id="email" name="email" oninput="validateForm()">
+
+            <button type="submit" id="submitButton">¡Entrar a mi cuenta!</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const userInput = document.getElementById('userInput').value;
+            const passwordInput = document.getElementById('passwordInput').value;
+            const repassword = document.getElementById('repassword').value;
+            const email = document.getElementById('email').value;
+            const submitButton = document.getElementById('submitButton');
+
+            if (userInput && passwordInput && repassword && email) {
+                submitButton.classList.remove('invalid');
+            } else {
+                submitButton.classList.add('invalid');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+

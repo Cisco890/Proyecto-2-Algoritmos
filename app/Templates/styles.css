@@ -1,0 +1,85 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+    color: white;
+}
+
+.navbar img.logo {
+    width: 50px;
+}
+
+.navbar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.navbar nav a.home-link {
+    font-size: 20px; /* Aumenta el tamaño de la fuente */
+    color: limegreen; /* Cambia el color a verde lima */
+    font-weight: bold; /* Opcional: Hace el texto más grueso */
+}
+
+.header {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.sidebar {
+    background-color: #f4f4f4;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 100%;
+}
+
+.products {
+    margin-left: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.product {
+    width: 33%;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    max-height: 250px; /* Limita la altura de las imágenes para mantener la uniformidad */
+}
+
+.product span {
+    display: block;
+    margin: 5px 0;
+}
+
+.product button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product button:hover {
+    background-color: #0056b3;
+}

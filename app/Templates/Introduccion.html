@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¡Bienvenido a Zapatoloco!</title>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp2754931.jpg'); /* Imagen de fondo */
+            background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir toda la página */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center center; /* Centra la imagen de fondo */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo translúcido para el encabezado */
+            border-radius: 10px;
+        }
+
+        .texto {
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo translúcido para el texto */
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        .entrada {
+            background-color: rgba(28, 45, 56, 0.8); /* Fondo translúcido para los botones */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .entrada input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .entrada input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .terminos {
+            color: rgb(225, 222, 169);
+            font-size: 10px;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Bienvenido a Zapatoloco!</h1>
+    <p class="texto"> 
+        ¡Encuentra tus productos fácilmente con nuestra encuesta! Dado a que nos interesa tu opinión y tu experiencia comprando, 
+        nos hemos tomado la molestia de crear una sección de preguntas que nos ayudará a entender tus preferencias. Tómate el tiempo necesario para contestar cada pregunta.
+        Para almacenar los datos, al final de esta encuesta se le solicitará la creación de un usuario. Esto con el fin de poder mejorar tu experiencia con nuestros servicios y facilitar
+        cualquier tipo de compra. Los datos almacenados servirán de forma exclusiva para la selección de productos. No usaremos tus datos de otra forma más que 
+        esta. Si usted ya posee algún usuario con nosotros, puede presionar el botón de "¡Registrate!". Si no es así, proceda a una presionar "¡Iniciar Sesión!". 
+    </p>
+    <div class="entrada">
+        <form action="/submit" method="post">
+            <input type="submit" value="¡Iniciar Sesión!">
+            <input type="submit" value="¡Registrate!">
+        </form>
+    </div>
+    <p class="terminos">
+        Todo el contenido incluido o puesto a disposición a través de cualquier Servicio de zapaticos, como texto, gráficos, logotipos, iconos de botones, imágenes, clips de audio, descargas digitales, compilaciones de datos y software es propiedad de zapaticos.
+    </p>
+</body>
+</html>
