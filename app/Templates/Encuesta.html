@@ -71,49 +71,20 @@
             background-color: #ff4c4c;
         }
     </style>
-    <script>
-        function validateForm() {
-            const questions = document.querySelectorAll('.questions input[type="radio"]:checked');
-            const submitButton = document.getElementById('submitButton');
-            if (questions.length === 5) {
-                submitButton.classList.remove('invalid');
-            } else {
-                submitButton.classList.add('invalid');
-            }
-        }
-
-        async function onsubmit(e) {
-            e.preventDefault();
-            const questions = document.querySelectorAll('.questions input[type="radio"]:checked');
-            if (questions.length === 5) {
-                // Aquí puedes agregar la lógica para enviar los datos
-                alert("Formulario enviado correctamente");
-            } else {
-                alert("Por favor, responda todas las preguntas");
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const inputs = document.querySelectorAll('.questions input[type="radio"]');
-            inputs.forEach(input => {
-                input.addEventListener('change', validateForm);
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="form-container">
         <h2>Encuesta de Productos</h2>
-        <form onsubmit="onsubmit(event)" method="post">
+        <form action="{{ url_for('survey') }}" method="post">
             <div class="questions">
                 <label for="question1">¿Haces deportes de manera frecuente?</label>
                 <div class="options">
                     <label for="yes1">
-                        <input type="radio" id="yes1" name="programming1" value="yes">
+                        <input type="radio" id="yes1" name="question1" value="yes" required>
                         Sí
                     </label>
                     <label for="no1">
-                        <input type="radio" id="no1" name="programming1" value="no">
+                        <input type="radio" id="no1" name="question1" value="no">
                         No
                     </label>
                 </div>
@@ -123,11 +94,11 @@
                 <label for="question2">¿Vistes de forma elegante de forma frecuente?</label>
                 <div class="options">
                     <label for="yes2">
-                        <input type="radio" id="yes2" name="programming2" value="yes">
+                        <input type="radio" id="yes2" name="question2" value="yes" required>
                         Sí
                     </label>
                     <label for="no2">
-                        <input type="radio" id="no2" name="programming2" value="no">
+                        <input type="radio" id="no2" name="question2" value="no">
                         No
                     </label>
                 </div>
@@ -137,25 +108,25 @@
                 <label for="question3">¿Haces montañismo de forma habitual?</label>
                 <div class="options">
                     <label for="yes3">
-                        <input type="radio" id="yes3" name="programming3" value="yes">
+                        <input type="radio" id="yes3" name="question3" value="yes" required>
                         Sí
                     </label>
                     <label for="no3">
-                        <input type="radio" id="no3" name="programming3" value="no">
+                        <input type="radio" id="no3" name="question3" value="no">
                         No
                     </label>
                 </div>
             </div>
 
             <div class="questions">
-                <label for="question4">¿Te gusta vertirte de forma casual frecuentemente?</label>
+                <label for="question4">¿Te gusta vestirte de forma casual frecuentemente?</label>
                 <div class="options">
                     <label for="yes4">
-                        <input type="radio" id="yes4" name="programming4" value="yes">
+                        <input type="radio" id="yes4" name="question4" value="yes" required>
                         Sí
                     </label>
                     <label for="no4">
-                        <input type="radio" id="no4" name="programming4" value="no">
+                        <input type="radio" id="no4" name="question4" value="no">
                         No
                     </label>
                 </div>
@@ -165,11 +136,11 @@
                 <label for="question5">¿Haces trabajos pesados?</label>
                 <div class="options">
                     <label for="yes5">
-                        <input type="radio" id="yes5" name="programming5" value="yes">
+                        <input type="radio" id="yes5" name="question5" value="yes" required>
                         Sí
                     </label>
                     <label for="no5">
-                        <input type="radio" id="no5" name="programming5" value="no">
+                        <input type="radio" id="no5" name="question5" value="no">
                         No
                     </label>
                 </div>
