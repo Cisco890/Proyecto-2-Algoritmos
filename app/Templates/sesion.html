@@ -69,21 +69,29 @@
 <body>
 
     <div class="form-container">
-        <form>
-            <label for="userInput">Introduce tu usuario:</label>
-            <input type="text" id="userInput" name="userInput">
-
-            <label for="passwordInput">Introduce tu contraseña:</label>
-            <input type="password" id="passwordInput" name="passwordInput">
-
-            <label for="confirmInput">Introduce nuevamente tu contraseña:</label>
-            <input type="password" id="confirmInput" name="confirmInput">
-
-            <label for="emailInput">Introduce tu correo:</label>
-            <input type="text" id="emailInput" name="emailInput">
-
-            <button type="submit">¡Crear usuario!</button>
+        <div class="form-container">
+            <form method="POST" action="{{ url_for('session') }}">
+                <label for="userInput">Usuario:</label>
+                <input type="text" id="userInput" name="userInput" required>
+        
+                <label for="passwordInput">Contraseña:</label>
+                <input type="password" id="passwordInput" name="passwordInput" required>
+        
+                <label for="confirmInput">Confirmar Contraseña:</label>
+                <input type="password" id="confirmInput" name="confirmInput" required>
+        
+                <label for="emailInput">Correo Electrónico:</label>
+                <input type="text" id="emailInput" name="emailInput" required>
+        
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+        
         </form>
+
+        </form>
+    </div>
+    
     </div>
 
 </body>
