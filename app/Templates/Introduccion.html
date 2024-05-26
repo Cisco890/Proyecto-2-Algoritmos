@@ -81,10 +81,15 @@
         esta. Si usted ya posee algún usuario con nosotros, puede presionar el botón de "¡Registrate!". Si no es así, proceda a una presionar "¡Iniciar Sesión!". 
     </p>
     <div class="entrada">
-        <form action="/submit" method="post">
-            <input type="submit" value="¡Iniciar Sesión!">
-            <input type="submit" value="¡Registrate!">
-        </form>
+        <!-- Iniciar Sesión -->
+    <form action="/login" method="get">
+        <button type="submit">Iniciar Sesión!</button>
+    </form>
+
+    <!-- Regístrate -->
+    <form action="/register" method="get">
+        <button type="submit">¡Regístrate!</button>
+    </form>
     </div>
     <p class="terminos">
         Todo el contenido incluido o puesto a disposición a través de cualquier Servicio de zapaticos, como texto, gráficos, logotipos, iconos de botones, imágenes, clips de audio, descargas digitales, compilaciones de datos y software es propiedad de zapaticos.
