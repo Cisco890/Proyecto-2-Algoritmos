@@ -63,7 +63,7 @@ body, html {
 .product img {
     width: 100%;
     height: auto;
-    max-height: 250px; /* Limita la altura de las imágenes para mantener la uniformidad */
+    max-height: 250px; 
 }
 
 .product span {
@@ -83,3 +83,80 @@ body, html {
 .product button:hover {
     background-color: #0056b3;
 }
+
+/* Reset some default styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+/* Header and Navbar */
+.navbar {
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+.navbar img.logo {
+    width: 50px;
+}
+.navbar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+.search-bar input[type="text"] {
+    padding: 8px;
+    margin-right: 4px;
+    width: 300px;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #f4f4f4;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    padding: 20px;
+}
+.sidebar h3 {
+    margin-bottom: 10px;
+}
+.sidebar ul {
+    list-style-type: none;
+}
+
+/* Main content and products */
+.product-list {
+    margin-left: 220px;
+    padding: 20px;
+}
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+.product {
+    margin: 10px;
+    width: 200px;
+}
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+

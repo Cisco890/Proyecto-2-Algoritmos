@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from neo4jconnection import Neo4jConnection
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key'
+
+# Configuración de la conexión a Neo4j
+neo4j_conn = Neo4jConnection("bolt://localhost:7687", "neo4j", "password")
 
 @app.route('/')
 def home():
@@ -12,8 +16,11 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # Aquí deberías validar el usuario y la contraseña
-        if username == 'admin' and password == 'password':  # Ejemplo de validación
+        # Aquí deberías validar el usuario y la contraseña con Neo4j
+        result = neo4j_conn.query("MATCH (u:User {username: $username, password: $password}) RETURN u", 
+                                  username=username, password=password)
+        user = result[0] if result else None
+        if user:
             flash('Inicio de sesión exitoso.')
             return redirect(url_for('store'))  # Redirige a la tienda
         else:
@@ -27,8 +34,10 @@ def register():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
-        # Aquí deberías registrar el nuevo usuario
+        # Aquí deberías registrar el nuevo usuario en Neo4j
         if password == confirm_password:
+            neo4j_conn.query("CREATE (u:User {username: $username, email: $email, password: $password})", 
+                            username=username, email=email, password=password)
             flash('Registro exitoso.')
             return redirect(url_for('survey'))  # Redirige a la encuesta
         else:
@@ -38,9 +47,9 @@ def register():
 @app.route('/survey', methods=['GET', 'POST'])
 def survey():
     if request.method == 'POST':
-        # Aquí puedes manejar las respuestas de la encuesta
-        return redirect(url_for('web'))  # Redirige a la página web.html
-    return render_template('Encuesta.html')  # Asegúrate de usar 'Encuesta.html'
+        
+        return redirect(url_for('web'))  
+    return render_template('Encuesta.html')  
 
 @app.route('/store')
 def store():
@@ -53,4 +62,7 @@ def web():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
+# Cierre de la conexión al salir de la aplicación
+@app.teardown_appcontext
+def close_driver(exception):
+    neo4j_conn.close()
