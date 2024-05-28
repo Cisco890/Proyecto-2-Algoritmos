@@ -17,13 +17,14 @@ def login():
         username = request.form['username']
         password = request.form['password']
         # Validar usuario y contraseña con Neo4j
-        result = neo4j_conn.query("MATCH (u:User {username: $username, password: $password}) RETURN u", 
-                                  username=username, password=password)
+        query = "MATCH (u:User {username: $username, password: $password}) RETURN u"
+        parameters = {"username": username, "password": password}
+        result = neo4j_conn.query(query, parameters)
         user = result[0] if result else None
         if user:
             session['username'] = username  # Almacena el nombre de usuario en la sesión
             flash('Inicio de sesión exitoso.')
-            return redirect(url_for('/store'))  # Redirige a la tienda
+            return redirect(url_for('web'))  # Redirige a la tienda
         else:
             flash('Nombre de usuario o contraseña incorrectos.')
     return render_template('login.html')
@@ -39,6 +40,7 @@ def register():
         if password == confirm_password:
             neo4j_conn.query("CREATE (u:User {username: $username, email: $email, password: $password})", 
                             username=username, email=email, password=password)
+            session['username'] = username  # Almacena el nombre de usuario en la sesión después del registro
             flash('Registro exitoso.')
             return redirect(url_for('survey'))  # Redirige a la encuesta
         else:
@@ -48,17 +50,23 @@ def register():
 @app.route('/survey', methods=['GET', 'POST'])
 def survey():
     if request.method == 'POST':
-
-        return redirect(url_for('web'))
-    return render_template('Encuesta.html')
+        # Procesar respuestas de la encuesta
+        return redirect(url_for('web'))  
+    return render_template('Encuesta.html')  
 
 @app.route('/store')
 def store():
-    return render_template('web.html')
+    username = session.get('username')  # Recupera el nombre de usuario de la sesión
+    if not username:
+        return redirect(url_for('login'))  # Redirige al usuario a la página de inicio de sesión si no hay nombre de usuario en la sesión
+    return render_template('web.html', username=username)
 
 @app.route('/web')
 def web():
-    return render_template('web.html')
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('login'))
+    return render_template('web.html', username=username)
 
 if __name__ == '__main__':
     app.run(debug=True)
