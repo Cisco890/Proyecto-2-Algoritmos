@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encuesta</title>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp2754931.jpg'); /* Imagen de fondo */
+            background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir toda la página */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center center; /* Centra la imagen de fondo */
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px; /* Agrandado */
+        }
+
+        .form-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-container .questions {
+            margin-bottom: 15px;
+        }
+
+        .form-container .options {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .form-container input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .form-container button.invalid {
+            background-color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Encuesta de Productos</h2>
+        <form action="{{ url_for('survey') }}" method="post">
+            <div class="questions">
+                <label for="question1">¿Haces deportes de manera frecuente?</label>
+                <div class="options">
+                    <label for="yes1">
+                        <input type="radio" id="yes1" name="question1" value="yes" required>
+                        Sí
+                    </label>
+                    <label for="no1">
+                        <input type="radio" id="no1" name="question1" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="questions">
+                <label for="question2">¿Vistes de forma elegante de forma frecuente?</label>
+                <div class="options">
+                    <label for="yes2">
+                        <input type="radio" id="yes2" name="question2" value="yes" required>
+                        Sí
+                    </label>
+                    <label for="no2">
+                        <input type="radio" id="no2" name="question2" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="questions">
+                <label for="question3">¿Haces montañismo de forma habitual?</label>
+                <div class="options">
+                    <label for="yes3">
+                        <input type="radio" id="yes3" name="question3" value="yes" required>
+                        Sí
+                    </label>
+                    <label for="no3">
+                        <input type="radio" id="no3" name="question3" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="questions">
+                <label for="question4">¿Te gusta vestirte de forma casual frecuentemente?</label>
+                <div class="options">
+                    <label for="yes4">
+                        <input type="radio" id="yes4" name="question4" value="yes" required>
+                        Sí
+                    </label>
+                    <label for="no4">
+                        <input type="radio" id="no4" name="question4" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="questions">
+                <label for="question5">¿Haces trabajos pesados?</label>
+                <div class="options">
+                    <label for="yes5">
+                        <input type="radio" id="yes5" name="question5" value="yes" required>
+                        Sí
+                    </label>
+                    <label for="no5">
+                        <input type="radio" id="no5" name="question5" value="no">
+                        No
+                    </label>
+                </div>
+            </div>
+            
+            <button id="submitButton" type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
+
