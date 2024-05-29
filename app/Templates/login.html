@@ -68,12 +68,12 @@
 <body>
     <div class="form-container">
         <h2>Por favor rellena tus datos para iniciar sesión</h2>
-        <form id="loginForm" onsubmit="return validateForm();">
+        <form id="loginForm" action="{{ url_for('login') }}" method="post" onsubmit="return validateForm();">
             <label for="userInput">Usuario:</label>
-            <input type="text" id="userInput" name="userInput" required>
+            <input type="text" id="userInput" name="username" required>
 
             <label for="passwordInput">Contraseña:</label>
-            <input type="password" id="passwordInput" name="passwordInput" required>
+            <input type="password" id="passwordInput" name="password" required>
 
             <button type="submit" id="submitButton">Iniciar Sesión</button>
         </form>

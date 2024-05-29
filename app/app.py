@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from neo4jconnection import Neo4jConnection
 
 app = Flask(__name__)
@@ -16,13 +16,15 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # Aquí deberías validar el usuario y la contraseña con Neo4j
-        result = neo4j_conn.query("MATCH (u:User {username: $username, password: $password}) RETURN u", 
-                                  username=username, password=password)
+        # Validar usuario y contraseña con Neo4j
+        query = "MATCH (u:User {username: $username, password: $password}) RETURN u"
+        parameters = {"username": username, "password": password}
+        result = neo4j_conn.query(query, parameters)
         user = result[0] if result else None
         if user:
+            session['username'] = username  # Almacena el nombre de usuario en la sesión
             flash('Inicio de sesión exitoso.')
-            return redirect(url_for('store'))  # Redirige a la tienda
+            return redirect(url_for('web'))  # Redirige a la tienda
         else:
             flash('Nombre de usuario o contraseña incorrectos.')
     return render_template('login.html')
@@ -34,10 +36,24 @@ def register():
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
-        # Aquí deberías registrar el nuevo usuario en Neo4j
-        if password == confirm_password:
-            neo4j_conn.query("CREATE (u:User {username: $username, email: $email, password: $password})", 
-                            username=username, email=email, password=password)
+        
+        # Consultar si el nombre de usuario ya existe en la base de datos
+        query = "MATCH (n:User {username: $username}) RETURN n.username"
+        parameters = {"username": username}
+        result = neo4j_conn.query(query, parameters)
+        
+        # Verificar si ya existe un usuario con el mismo nombre de usuario
+        if result:
+            print("Usuario existente, pruebe otro nombre")
+            flash('Usuario existente, pruebe otro nombre') 
+        elif password == confirm_password:
+            # Crear el nuevo usuario en la base de datos Neo4j
+            query = "CREATE (u:User {username: $username, email: $email, password: $password})"
+            parameters = {"username": username, "email": email, "password": password}
+            neo4j_conn.query(query, parameters)
+            
+            # Almacenar el nombre de usuario en la sesión después del registro
+            session['username'] = username  
             flash('Registro exitoso.')
             return redirect(url_for('survey'))  # Redirige a la encuesta
         else:
@@ -47,17 +63,23 @@ def register():
 @app.route('/survey', methods=['GET', 'POST'])
 def survey():
     if request.method == 'POST':
-        
+        # Procesar respuestas de la encuesta
         return redirect(url_for('web'))  
     return render_template('Encuesta.html')  
 
 @app.route('/store')
 def store():
-    return render_template('store.html')
+    username = session.get('username')  # Recupera el nombre de usuario de la sesión
+    if not username:
+        return redirect(url_for('login'))  # Redirige al usuario a la página de inicio de sesión si no hay nombre de usuario en la sesión
+    return render_template('web.html', username=username)
 
 @app.route('/web')
 def web():
-    return render_template('web.html')
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('login'))
+    return render_template('web.html', username=username)
 
 if __name__ == '__main__':
     app.run(debug=True)
