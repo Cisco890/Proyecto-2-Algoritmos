@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zapaticos Shoe Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Tienda</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+
+        .product h3 {
+            margin-top: 0;
+        }
+
+        .product p {
+            margin: 5px 0;
+        }
+
+        .product button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header class="navbar">
-        <img src="logo.png" alt="Zapaticos Logo" class="logo">
-        <nav>
-            <a href="#" class="home-link">Home</a>
-            <a href="#">Login</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <div class="header">
-        <h1>Our New Collection</h1>
+    <div class="container">
+        <h1>Bienvenido, {{ username }}</h1>
+        <h2>Recomendaciones para ti</h2>
+        {% if products %}
+            {% for product in products %}
+                <div class="product">
+                    <h3>{{ product.name }}</h3>
+                    <p>Marca: {{ product.marca }}</p>
+                    <p>Tipo: {{ product.tipo }}</p>
+                    <p>Sexo: {{ product.sexo }}</p>
+                    <form action="{{ url_for('buy') }}" method="post">
+                        <input type="hidden" name="product_name" value="{{ product.name }}">
+                        <input type="hidden" name="product_price" value="100"> <!-- Este es un ejemplo, reemplazar con el precio real -->
+                        <button type="submit">Comprar</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay recomendaciones disponibles en este momento.</p>
+        {% endif %}
     </div>
-    <aside class="sidebar">
-        <button>New Collection</button>
-        <button>Special Promo</button>
-        <button>Casual</button>
-        <button>Sports</button>
-    </aside>
-    <main class="products">
-        <div class="product">
-            <img src="air-jordan-1.png" alt="Air Jordan 1">
-            <span>Air Jordan 1</span>
-            <span>$68.56</span>
-        </div>
-        <div class="product">
-            <img src="nike-blazer-low.png" alt="Nike Blazer Low '77">
-            <span>Nike Blazer Low '77</span>
-            <span>$68.56</span>
-        </div>
-        <div class="product">
-            <img src="lacoste-linset.png" alt="Lacoste Men's Linset">
-            <span>Lacoste Men's Linset</span>
-            <span>$68.56</span>
-        </div>
-    </main>
-    <footer>
-        <p>Copyright © Zapaticos Shoe Store</p>
-    </footer>
 </body>
 </html>

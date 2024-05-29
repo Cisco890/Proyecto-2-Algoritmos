@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>Inicio de sesión</title>
     <style>
         body {
             background-image: url('https://wallpapercave.com/wp/wp2754931.jpg');
@@ -15,20 +15,19 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            color: #fff;
         }
 
         .form-container {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
         }
 
         .form-container h2 {
-            color: #fff;
+            color: #333;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -41,9 +40,9 @@
 
         .form-container input[type="text"],
         .form-container input[type="password"] {
-            width: calc(100% - 22px);
+            width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
@@ -60,40 +59,23 @@
             transition: background-color 0.3s ease;
         }
 
-        .form-container button.invalid {
-            background-color: #ff4c4c;
+        .form-container button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h2>Por favor rellena tus datos para iniciar sesión</h2>
-        <form id="loginForm" onsubmit="return validateForm();">
-            <label for="userInput">Usuario:</label>
-            <input type="text" id="userInput" name="userInput" required>
+        <h2>Inicio de sesión</h2>
+        <form action="{{ url_for('login') }}" method="post">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required>
 
-            <label for="passwordInput">Contraseña:</label>
-            <input type="password" id="passwordInput" name="passwordInput" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
 
-            <button type="submit" id="submitButton">Iniciar Sesión</button>
+            <button type="submit">Iniciar sesión</button>
         </form>
     </div>
-
-    <script>
-        function validateForm() {
-            const userInput = document.getElementById('userInput').value;
-            const passwordInput = document.getElementById('passwordInput').value;
-            const submitButton = document.getElementById('submitButton');
-
-            if (!userInput || !passwordInput) {
-                submitButton.classList.add('invalid');
-                alert('Por favor, completa todos los campos requeridos.');
-                return false; // Impide que el formulario se envíe si hay errores
-            }
-
-            submitButton.classList.remove('invalid');
-            return true; // Permite que el formulario se envíe
-        }
-    </script>
 </body>
 </html>

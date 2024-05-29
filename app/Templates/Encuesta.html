@@ -5,10 +5,10 @@
     <title>Encuesta</title>
     <style>
         body {
-            background-image: url('https://wallpapercave.com/wp/wp2754931.jpg'); /* Imagen de fondo */
-            background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir toda la página */
-            background-repeat: no-repeat; /* Evita que la imagen se repita */
-            background-position: center center; /* Centra la imagen de fondo */
+            background-image: url('https://wallpapercave.com/wp/wp2754931.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
             margin: 0;
             height: 100vh;
             display: flex;
@@ -18,12 +18,12 @@
         }
 
         .form-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 500px; /* Agrandado */
+            max-width: 500px;
         }
 
         .form-container h2 {
@@ -76,6 +76,19 @@
     <div class="form-container">
         <h2>Encuesta de Productos</h2>
         <form action="{{ url_for('survey') }}" method="post">
+            <div class="questions">
+                <label for="gender">Género:</label>
+                <div class="options">
+                    <label for="female">
+                        <input type="radio" id="female" name="gender" value="F" required>
+                        Mujer
+                    </label>
+                    <label for="male">
+                        <input type="radio" id="male" name="gender" value="M">
+                        Hombre
+                    </label>
+                </div>
+            </div>
             <div class="questions">
                 <label for="question1">¿Haces deportes de manera frecuente?</label>
                 <div class="options">
@@ -151,4 +164,3 @@
     </div>
 </body>
 </html>
-
